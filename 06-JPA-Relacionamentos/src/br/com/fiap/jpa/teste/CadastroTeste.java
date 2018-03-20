@@ -7,6 +7,7 @@ import javax.persistence.EntityManagerFactory;
 
 import br.com.fiap.jpa.dao.impl.NotaFiscalDAOImpl;
 import br.com.fiap.jpa.dao.impl.PedidoDAOImpl;
+import br.com.fiap.jpa.entity.ItemPedido;
 import br.com.fiap.jpa.entity.NotaFiscal;
 import br.com.fiap.jpa.entity.Pedido;
 import br.com.fiap.jpa.exception.CommitException;
@@ -25,6 +26,12 @@ public class CadastroTeste {
 		Pedido pedido = new Pedido(Calendar.getInstance(), "Pizza");
 		NotaFiscal notaFiscal = new NotaFiscal(Calendar.getInstance(), 35.90, pedido);
 
+		ItemPedido item1 = new ItemPedido("Pizza", 20.99);
+		ItemPedido item2 = new ItemPedido("Coca-Cola", 5.99);
+		
+		pedido.adicionarItem(item1);
+		pedido.adicionarItem(item2);
+		
 		try {
 			
 			//pedidoDao.inserir(pedido);
