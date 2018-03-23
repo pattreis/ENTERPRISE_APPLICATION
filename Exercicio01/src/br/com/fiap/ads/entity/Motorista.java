@@ -1,35 +1,43 @@
 package br.com.fiap.ads.entity;
 
-
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="TB_MOTORISTA")
+@Table(name = "TB_MOTORISTA")
 public class Motorista implements Serializable {
-	
+
 	@Id
-	@Column(name="nr_carteira")	
+	@Column(name = "nr_carteira")
 	private int nr_carteira;
-	
-	@Column(name="nm_motorista", nullable=false, length = 100 )
+
+	@Column(name = "nm_motorista", nullable = false, length = 100)
 	private String nm_motorista;
-	
-	@Column(name="dt_nascimento", length = 10)
+
+	@Column(name = "dt_nascimento", length = 10)
+	@Temporal(TemporalType.TIMESTAMP)
 	private String dt_nascimento;
-	
+
 	@Lob
-	@Column(name="fl_carteira")
+	@Column(name = "fl_carteira")
 	private byte[] fl_carteira;
-	
-	@Column(name="ds_genero")
+
+	@Column(name = "ds_genero")
 	private GeneroMotorista ds_genero;
-	
+
+	@OneToMany(mappedBy = "motorista", cascade = CascadeType.PERSIST)
+	private List<Corrida> corridas;
+
 	public Motorista() {
 		super();
 	}
@@ -83,7 +91,13 @@ public class Motorista implements Serializable {
 	public void setDs_genero(GeneroMotorista ds_genero) {
 		this.ds_genero = ds_genero;
 	}
-	
-	
-	
+
+	public List<Corrida> getCorridas() {
+		return corridas;
+	}
+
+	public void setCorridas(List<Corrida> corridas) {
+		this.corridas = corridas;
+	}
+
 }

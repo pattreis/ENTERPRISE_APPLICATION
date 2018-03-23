@@ -34,7 +34,7 @@ public class Pedido {
 	@Column(name = "ds_pedido", nullable = false, length = 200)
 	private String descricao;
 
-	@OneToOne(mappedBy = "pedido")
+	@OneToOne(mappedBy = "pedido")	
 	private NotaFiscal nota;
 
 	@OneToMany(mappedBy = "pedido", cascade=CascadeType.PERSIST)
