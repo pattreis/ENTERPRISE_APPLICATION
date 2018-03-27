@@ -1,6 +1,6 @@
 package br.com.fiap.ads.entity;
 
-public enum GeneroMotorista {
+public enum Genero {
 	
 	Masculino, Feminino, Indefinido;
 

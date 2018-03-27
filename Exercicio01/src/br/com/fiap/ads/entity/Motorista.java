@@ -6,8 +6,13 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -33,17 +38,21 @@ public class Motorista implements Serializable {
 	private byte[] fl_carteira;
 
 	@Column(name = "ds_genero")
-	private GeneroMotorista ds_genero;
+	private Genero ds_genero;
 
 	@OneToMany(mappedBy = "motorista", cascade = CascadeType.PERSIST)
 	private List<Corrida> corridas;
 
+	@ManyToMany(cascade= CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@JoinTable(name="T_VEICULO_MOTORISTA", joinColumns = @JoinColumn(name="cd_motorista"), inverseJoinColumns = @JoinColumn(name="cd_veiculo"))
+	private List<Veiculo> veiculos;
+	
 	public Motorista() {
 		super();
 	}
 
 	public Motorista(int nr_carteira, String nm_motorista, String dt_nascimento, byte[] fl_carteira,
-			GeneroMotorista ds_genero) {
+			Genero ds_genero) {
 		super();
 		this.nr_carteira = nr_carteira;
 		this.nm_motorista = nm_motorista;
@@ -84,11 +93,11 @@ public class Motorista implements Serializable {
 		this.fl_carteira = fl_carteira;
 	}
 
-	public GeneroMotorista getDs_genero() {
+	public Genero getDs_genero() {
 		return ds_genero;
 	}
 
-	public void setDs_genero(GeneroMotorista ds_genero) {
+	public void setDs_genero(Genero ds_genero) {
 		this.ds_genero = ds_genero;
 	}
 
@@ -98,6 +107,14 @@ public class Motorista implements Serializable {
 
 	public void setCorridas(List<Corrida> corridas) {
 		this.corridas = corridas;
+	}
+
+	public List<Veiculo> getVeiculos() {
+		return veiculos;
+	}
+
+	public void setVeiculos(List<Veiculo> veiculos) {
+		this.veiculos = veiculos;
 	}
 
 }

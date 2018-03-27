@@ -1,5 +1,8 @@
 package br.com.fiap.ads.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -39,14 +43,17 @@ public class Corrida {
 	@JoinColumn(name = "cd_motorista")
 	private Motorista motorista;
 
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "cd_passageiro")
+	private Passageiro passageiro;
+
 	public Corrida() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Corrida(int codigo, String origem, String destino, String dtCorrida, double valor) {
+	public Corrida(String origem, String destino, String dtCorrida, double valor) {
 		super();
-		this.codigo = codigo;
 		this.origem = origem;
 		this.destino = destino;
 		this.dtCorrida = dtCorrida;

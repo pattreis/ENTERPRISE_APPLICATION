@@ -41,7 +41,6 @@ public class NotaFiscal {
 
 	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JoinTable(name = "T_IMPOSTO_NOTA_FISCAL", joinColumns = @JoinColumn(name = "cd_nota_fiscal"), inverseJoinColumns = @JoinColumn(name = "cd_imposto"))
-
 	private List<Imposto> impostos;
 
 	public NotaFiscal() {

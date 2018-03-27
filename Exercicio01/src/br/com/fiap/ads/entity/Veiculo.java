@@ -1,12 +1,14 @@
 package br.com.fiap.ads.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -28,6 +30,9 @@ public class Veiculo implements Serializable {
 
 	@Column(name = "nr_ano")
 	private int nr_ano;
+
+	@ManyToMany(mappedBy="veiculos")
+	private List<Motorista> motoristas;
 
 	public Veiculo() {
 		super();
@@ -72,6 +77,14 @@ public class Veiculo implements Serializable {
 
 	public void setNr_ano(int nr_ano) {
 		this.nr_ano = nr_ano;
+	}
+
+	public List<Motorista> getMotoristas() {
+		return motoristas;
+	}
+
+	public void setMotoristas(List<Motorista> motoristas) {
+		this.motoristas = motoristas;
 	}
 
 }
