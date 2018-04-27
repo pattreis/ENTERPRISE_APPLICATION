@@ -21,7 +21,7 @@ public class teste {
 		EntityManagerFactory fb = EntityManagerFactorySingleton.getInstance();
 		EntityManager em = fb.createEntityManager();
 
-		Medico medico = new Medico(1234, "Sergio Marcone", "Pediatria");
+		Medico medico = new Medico(1234, "Sergio Marcone", "Pediatria", 2.334, 4566);
 		Paciente paciente = new Paciente("Pedrinho Oliveira", new GregorianCalendar(1994, Calendar.JANUARY, 14));
 
 		Consulta consulta = new Consulta(medico, paciente, Calendar.getInstance(), "2A", true);
