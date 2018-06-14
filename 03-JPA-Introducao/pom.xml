@@ -25,7 +25,7 @@
 			<version>5.2.12.Final</version>
 		</dependency>
 		<dependency>
-			<groupId>oracle</groupId>
+			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc</artifactId>
 			<version>8</version>
 			<scope>system</scope>
